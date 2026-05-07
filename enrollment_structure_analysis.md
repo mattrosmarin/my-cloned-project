@@ -40,3 +40,69 @@ Database layer handles SQLite queries and row operations.
 Service layer handles enrollment validation, summaries, enrollment rules, and student actions.
 Application flow should be separated from low-level database operations.
 The project can later support a Streamlit UI more cleanly after separation of concerns is improved.
+
+Backend Refactor Plan
+Goals
+Separate database logic from service logic.
+Move the project toward a layered backend design.
+Keep SQLite queries inside the database layer.
+Keep enrollment rules and summary logic inside the service layer.
+Improve maintainability and scalability before building the Streamlit UI.
+Proposed Structure
+backend/
+│
+├── database.py
+├── services.py
+├── main.py
+Planned Responsibilities
+database.py
+
+Responsible for:
+
+SQLite connection management
+table creation
+seed data
+SELECT queries
+INSERT/UPDATE operations
+returning database rows
+
+Functions likely moved here:
+
+connect
+create_tables
+seed_sample_data
+get_available_course_keys
+get_course_by_key
+get_student_enrollments
+get_student_enrollment_history
+get_student_course_record
+get_all_enrollment_records
+services.py
+
+Responsible for:
+
+enrollment-key validation
+enrollment workflow behavior
+summary calculations
+soft unenroll logic
+application-level business rules
+
+Functions likely moved here:
+
+enroll_with_key
+soft_unenroll_student
+get_student_summary
+main.py
+
+Responsible for:
+
+running the application flow
+testing backend behavior
+exporting JSON snapshots
+connecting database and service layers together
+Benefits Of The Refactor
+Cleaner separation of concerns
+Easier testing and debugging
+Better scalability for future Streamlit UI work
+Reduced coupling between SQL and business logic
+More maintainable backend structure
