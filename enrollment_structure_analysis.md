@@ -106,3 +106,20 @@ Easier testing and debugging
 Better scalability for future Streamlit UI work
 Reduced coupling between SQL and business logic
 More maintainable backend structure
+
+
+
+Reflection: 
+
+
+What The Generated Code Does:
+
+The backend was refactored into separate files for database logic, service logic, and application flow.
+
+- `database.py` handles SQLite queries and database operations.
+- `services.py` handles enrollment rules and summary logic.
+- `main.py` runs the backend workflow and exports the JSON snapshot.
+
+How The Refactor Solved Structural Issues
+
+The refactor separated business logic from SQL logic. This made the project easier to organize, maintain, and expand for a future Streamlit UI.
